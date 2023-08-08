@@ -1,0 +1,81 @@
+name: CMake
+
+on: [push, pull_request]
+
+jobs:
+  build_linux:
+    runs-on: ubuntu-latest
+    name: Linux
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+    - with:
+        version: '5.15.2'
+        host: 'linux'
+    - name: Making directory
+      run: mkdir build && cd build
+
+    - name: Create Build Environment and Generate files
+      run: cmake -S . -B build/Debug -DCMAKE_BUILD_TYPE=Debug
+
+    - name: Building
+      run: cmake --build build/Debug
+
+    - name: Test
+      working-directory: ./build/Debug
+      run: ctest -VV
+
+  build_osx:
+    runs-on: macos-latest
+    name: MacOS
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+    - with:
+        version: '5.15.2'
+        host: 'mac'
+
+    - name: Making directory
+      run: mkdir build && cd build
+
+    - name: Create Build Environment and Generate files
+      run: cmake -S . -B build/Debug -DCMAKE_BUILD_TYPE=Debug
+
+    - name: Building
+      run: cmake --build build/Debug
+
+    - name: Test
+      working-directory: ./build/Debug
+      run: ctest -VV
+
+  build_windows:
+    runs-on: windows-latest
+    name: Windows
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+    - with:
+        version: '5.15.2'
+        host: 'windows'
+
+    - name: Making directory
+      run: |
+        mkdir build
+        cd build
+
+    - name: Create Build Environment and Generete files
+      run: cmake -S . -B build/Debug -DCMAKE_BUILD_TYPE=Debug
+
+    - name: Building
+      run: cmake --build build/Debug
+
+    - name: Test
+      working-directory: .\build\Debug
+      run: ctest -VV

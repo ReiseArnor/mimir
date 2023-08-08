@@ -1,0 +1,19 @@
+variable fibonacci = procedimiento(numero) {
+	variable a = 0;
+	variable b = 1;
+	variable c = 1;
+	variable secuencia = "";
+	variable contador = 1;
+
+	mientras (contador < numero) {
+		c = a + b;
+		secuencia = secuencia + entero_a_cadena(c) + " ";
+		a = b;
+		b = c;
+		contador = contador + 1;
+	}
+
+	regresa secuencia;
+}
+
+fibonacci(15);
