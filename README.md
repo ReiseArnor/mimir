@@ -10,7 +10,8 @@
 ## Installing dependencies
 ### For Arch/Manjaro (and their derivatives):
 ```bash
-sudo pacman -S cmake clang qt5-base```
+sudo pacman -S cmake clang qt5-base
+```
 
 ### For Ubuntu/Debian (and their derivatives)
 ```bash
