@@ -3,6 +3,7 @@
 #include <QtWidgets>
 #include <memory>
 #include <vector>
+#include "code_editor.h"
 
 class MainWindow final : public QMainWindow {
 public:
@@ -30,7 +31,7 @@ private:
   QString console;
 
   std::unique_ptr<QWidget> MainWidget;
-  std::unique_ptr<QPlainTextEdit> TextBox;
+  std::unique_ptr<CodeEditor> TextBox;
   std::unique_ptr<QPlainTextEdit> CompileBox;
   std::unique_ptr<QGridLayout> MainLayout;
   std::unique_ptr<QMenu> MenuFile;

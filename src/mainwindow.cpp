@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "code_editor.h"
 #include "interpreter/interpreter.h"
 #include <memory>
 #include <qaction.h>
@@ -9,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
   MainWidget = make_unique<QWidget>();
   MainLayout = make_unique<QGridLayout>();
-  TextBox = make_unique<QPlainTextEdit>();
+  TextBox = make_unique<CodeEditor>();
   FileName = "sin-nombre.mir";
 
   setCentralWidget(MainWidget.get());
